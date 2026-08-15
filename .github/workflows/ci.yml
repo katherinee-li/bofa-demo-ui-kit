@@ -32,7 +32,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          path: library
+      - name: Resolve consumer ref
+        id: consumer
+        run: |
+          ref=main
+          if [ -f library/.downstream-consumer-ref ]; then
+            ref=$(tr -d '[:space:]' < library/.downstream-consumer-ref)
+          fi
+          echo "ref=$ref" >> "$GITHUB_OUTPUT"
+          echo "Building consumer from ref: $ref"
+      - uses: actions/checkout@v4
+        with:
           repository: katherinee-li/bofa-demo-app
+          ref: ${{ steps.consumer.outputs.ref }}
           path: consumer
       - uses: actions/setup-node@v4
         with:
