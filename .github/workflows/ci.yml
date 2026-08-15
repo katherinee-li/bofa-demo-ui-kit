@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  library:
+    name: Build & test @bofa/ds
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+      - run: npm ci
+      - run: npx ng build ds
+      - run: npx ng test ds --watch=false --browsers=ChromeHeadlessCI
+      - name: Pack library artifact
+        run: cd dist/ds && npm pack --pack-destination "$GITHUB_WORKSPACE"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bofa-ds-tarball
+          path: bofa-ds-*.tgz
+
+  downstream-consumer-build:
+    name: Downstream consumer build (banking-app)
+    needs: library
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: katherinee-li/bofa-demo-app
+          path: consumer
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - uses: actions/download-artifact@v4
+        with:
+          name: bofa-ds-tarball
+          path: tarball
+      - name: Install consumer against the freshly built library
+        working-directory: consumer
+        run: |
+          npm ci
+          npm install "$(ls "$GITHUB_WORKSPACE"/tarball/bofa-ds-*.tgz)"
+      - name: Build consumer
+        working-directory: consumer
+        run: npx ng build
+      - name: Test consumer
+        working-directory: consumer
+        run: npx ng test --watch=false --browsers=ChromeHeadlessCI
