@@ -31,11 +31,11 @@ export interface DsStatementPeriod {
   `,
   styles: [
     `
-      .bofa-statement-tabs__count {
-        padding: 16px 8px;
-        margin: 0;
-      }
-    `,
+          .bofa-statement-tabs__count {
+            padding: 16px 8px;
+            margin: 0;
+          }
+        `,
   ],
 })
 export class DsStatementTabsComponent {

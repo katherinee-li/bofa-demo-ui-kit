@@ -55,7 +55,7 @@ $bofa-typography: mat.define-typography-config(
   $font-family: 'Connections, Helvetica Neue, Arial, sans-serif',
   $headline-5: mat.define-typography-level(28px, 36px, 600),
   $headline-6: mat.define-typography-level(22px, 30px, 600),
-  $body-1: mat.define-typography-level(16px, 24px, 400),
+  $body-2: mat.define-typography-level(16px, 24px, 400),
 );
 
 $bofa-primary: mat.define-palette($bofa-blue, 500);

@@ -50,13 +50,13 @@ export interface DsTransaction {
   `,
   styles: [
     `
-      .bofa-transaction-table {
-        width: 100%;
-      }
-      .bofa-cell--numeric {
-        text-align: right;
-      }
-    `,
+          .bofa-transaction-table {
+            width: 100%;
+          }
+          .bofa-cell--numeric {
+            text-align: right;
+          }
+        `,
   ],
 })
 export class DsTransactionTableComponent implements OnChanges, AfterViewInit {

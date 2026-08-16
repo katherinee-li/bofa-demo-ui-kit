@@ -29,10 +29,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   `,
   styles: [
     `
-      .bofa-currency-input {
-        width: 100%;
-      }
-    `,
+          .bofa-currency-input {
+            width: 100%;
+          }
+        `,
   ],
 })
 export class DsCurrencyInputComponent implements ControlValueAccessor {
