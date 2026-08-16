@@ -20,12 +20,12 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   `,
   styles: [
     `
-      .bofa-account-card__balance {
-        font-size: 28px;
-        font-weight: 600;
-        margin: 8px 0 0;
-      }
-    `,
+          .bofa-account-card__balance {
+            font-size: 28px;
+            font-weight: 600;
+            margin: 8px 0 0;
+          }
+        `,
   ],
 })
 export class DsAccountCardComponent {

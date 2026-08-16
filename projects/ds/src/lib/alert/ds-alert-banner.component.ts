@@ -25,34 +25,34 @@ export type DsAlertSeverity = 'info' | 'warning' | 'critical' | 'success';
   `,
   styles: [
     `
-      .bofa-alert {
-        display: flex;
-        align-items: flex-start;
-        gap: 12px;
-        padding: 12px 16px;
-        border-left: 4px solid currentColor;
-        border-radius: 4px;
-      }
-      .bofa-alert--critical {
-        color: #c8102e;
-        background: #fdecee;
-      }
-      .bofa-alert--warning {
-        color: #8a5300;
-        background: #fff6e5;
-      }
-      .bofa-alert--info {
-        color: #012169;
-        background: #eaeef7;
-      }
-      .bofa-alert--success {
-        color: #1d6b3f;
-        background: #eaf6ee;
-      }
-      .bofa-alert__body {
-        flex: 1;
-      }
-    `,
+          .bofa-alert {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 16px;
+            border-left: 4px solid currentColor;
+            border-radius: 4px;
+          }
+          .bofa-alert--critical {
+            color: #c8102e;
+            background: #fdecee;
+          }
+          .bofa-alert--warning {
+            color: #8a5300;
+            background: #fff6e5;
+          }
+          .bofa-alert--info {
+            color: #012169;
+            background: #eaeef7;
+          }
+          .bofa-alert--success {
+            color: #1d6b3f;
+            background: #eaf6ee;
+          }
+          .bofa-alert__body {
+            flex: 1;
+          }
+        `,
   ],
 })
 export class DsAlertBannerComponent {

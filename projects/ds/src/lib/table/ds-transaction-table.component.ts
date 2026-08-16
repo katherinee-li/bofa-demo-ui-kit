@@ -6,9 +6,9 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
+import { MatTableDataSource } from '@angular/material/table';
 
 export interface DsTransaction {
   postedAt: string;
@@ -50,13 +50,13 @@ export interface DsTransaction {
   `,
   styles: [
     `
-      .bofa-transaction-table {
-        width: 100%;
-      }
-      .bofa-cell--numeric {
-        text-align: right;
-      }
-    `,
+          .bofa-transaction-table {
+            width: 100%;
+          }
+          .bofa-cell--numeric {
+            text-align: right;
+          }
+        `,
   ],
 })
 export class DsTransactionTableComponent implements OnChanges, AfterViewInit {
