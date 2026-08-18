@@ -15,17 +15,19 @@ export interface DsStatementPeriod {
       class="bofa-statement-tabs"
       [selectedIndex]="selectedIndex"
       (selectedIndexChange)="periodChanged.emit(periods[$event]?.periodId)"
-    >
-      <mat-tab *ngFor="let period of periods" [label]="period.label">
-        <ng-template matTabContent>
-          <p class="bofa-statement-tabs__count">
-            {{ period.documentCount }} statement(s) available for {{ period.label }}
-          </p>
-          <ng-content></ng-content>
-        </ng-template>
-      </mat-tab>
+      >
+      @for (period of periods; track period) {
+        <mat-tab [label]="period.label">
+          <ng-template matTabContent>
+            <p class="bofa-statement-tabs__count">
+              {{ period.documentCount }} statement(s) available for {{ period.label }}
+            </p>
+            <ng-content></ng-content>
+          </ng-template>
+        </mat-tab>
+      }
     </mat-tab-group>
-  `,
+    `,
     styles: [
         `
       .bofa-statement-tabs__count {

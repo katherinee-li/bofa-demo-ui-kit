@@ -23,10 +23,12 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
         [attr.aria-label]="label"
         (input)="onInput($event)"
         (blur)="onTouched()"
-      />
-      <mat-hint *ngIf="hint">{{ hint }}</mat-hint>
+        />
+      @if (hint) {
+        <mat-hint>{{ hint }}</mat-hint>
+      }
     </mat-form-field>
-  `,
+    `,
     styles: [
         `
       .bofa-currency-input {

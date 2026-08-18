@@ -9,20 +9,23 @@ export type DsAlertSeverity = 'info' | 'warning' | 'critical' | 'success';
     <div class="bofa-alert" [ngClass]="'bofa-alert--' + severity" role="status">
       <mat-icon class="bofa-alert__icon">{{ icon }}</mat-icon>
       <div class="bofa-alert__body">
-        <strong class="bofa-alert__title" *ngIf="title">{{ title }}</strong>
+        @if (title) {
+          <strong class="bofa-alert__title">{{ title }}</strong>
+        }
         <ng-content></ng-content>
       </div>
-      <button
-        mat-icon-button
-        *ngIf="dismissible"
-        class="bofa-alert__dismiss"
-        aria-label="Dismiss notification"
-        (click)="dismissed.emit()"
-      >
-        <mat-icon>close</mat-icon>
-      </button>
+      @if (dismissible) {
+        <button
+          mat-icon-button
+          class="bofa-alert__dismiss"
+          aria-label="Dismiss notification"
+          (click)="dismissed.emit()"
+          >
+          <mat-icon>close</mat-icon>
+        </button>
+      }
     </div>
-  `,
+    `,
     styles: [
         `
       .bofa-alert {

@@ -14,11 +14,13 @@ export type DsButtonVariant = 'primary' | 'secondary' | 'danger';
       [disabled]="disabled || loading"
       [attr.aria-busy]="loading"
       (click)="pressed.emit($event)"
-    >
-      <mat-spinner *ngIf="loading" class="bofa-button__spinner" diameter="18"></mat-spinner>
+      >
+      @if (loading) {
+        <mat-spinner class="bofa-button__spinner" diameter="18"></mat-spinner>
+      }
       <span class="bofa-button__label"><ng-content></ng-content></span>
     </button>
-  `,
+    `,
     styles: [
         `
       .bofa-button__spinner {
