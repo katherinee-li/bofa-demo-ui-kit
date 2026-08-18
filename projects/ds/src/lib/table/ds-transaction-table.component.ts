@@ -5,6 +5,7 @@ import {
   OnChanges,
   SimpleChanges,
   ViewChild,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -58,6 +59,7 @@ export interface DsTransaction {
       }
     `,
     ],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DsTransactionTableComponent implements OnChanges, AfterViewInit {

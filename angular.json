@@ -13,7 +13,7 @@
       "prefix": "bofa",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "builder": "@angular/build:ng-packagr",
           "options": {
             "project": "projects/ds/ng-package.json"
           },
@@ -28,7 +28,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:karma",
           "options": {
             "tsConfig": "projects/ds/tsconfig.spec.json",
             "polyfills": [

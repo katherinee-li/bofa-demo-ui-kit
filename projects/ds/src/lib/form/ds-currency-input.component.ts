@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, Input, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -36,6 +36,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
       }
     `,
     ],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DsCurrencyInputComponent implements ControlValueAccessor {
