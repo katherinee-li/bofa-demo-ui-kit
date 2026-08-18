@@ -6,10 +6,7 @@ export interface DsStatementPeriod {
   documentCount: number;
 }
 
-/**
- * Statement period switcher. Still on the pre-MDC Material tabs implementation
- * inherited from the original build; the rest of the library has moved on.
- */
+/** Statement period switcher. */
 @Component({
   selector: 'bofa-statement-tabs',
   changeDetection: ChangeDetectionStrategy.OnPush,

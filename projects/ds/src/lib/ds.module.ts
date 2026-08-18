@@ -8,9 +8,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatLegacyTabsModule } from '@angular/material/legacy-tabs';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { DsAlertBannerComponent } from './alert/ds-alert-banner.component';
 import { DsButtonComponent } from './button/ds-button.component';
@@ -40,10 +40,10 @@ const COMPONENTS = [
     MatIconModule,
     MatInputModule,
     MatPaginatorModule,
-    MatLegacyTabsModule,
     MatProgressSpinnerModule,
     MatSortModule,
     MatTableModule,
+    MatTabsModule,
   ],
   exports: [...COMPONENTS],
 })
