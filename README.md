@@ -10,10 +10,10 @@ demo: the situation it models is an Angular 14→18 upgrade where downstream tea
 
 | Item | Value |
 |---|---|
-| Angular | 16.2.x |
-| Angular Material | 16.2.x |
-| Node | 18.x (Angular 16 supports `^16.14 \|\| ^18.10`) |
-| Library version | 3.2.0 |
+| Angular | 22.1.x |
+| Angular Material | 22.1.x |
+| Node | 22.22.3 (see `.nvmrc`) |
+| Library version | 4.0.0 |
 
 ## Commands
 
@@ -29,11 +29,11 @@ cd dist/ds && npm pack                                 # artifact consumers inst
 - `projects/ds/src/public-api.ts` is the compatibility contract. Removing or changing an export breaks
   every downstream consumer build.
 - `projects/ds/src/styles/_theme.scss` holds the custom design system layered over Material theming
-  (`define-light-theme`, `define-typography-config`), which is where Material's theming API changes
-  land during an upgrade.
-- `projects/ds/src/lib/tabs/ds-statement-tabs.component.ts` still uses the pre-MDC
-  `@angular/material/legacy-tabs` entry point, which Angular Material removes in v17 — a real, not
-  hypothetical, upgrade blocker.
+  (`m2-define-light-theme`, `m2-define-typography-config`), which is where Material's theming API
+  changes land during an upgrade.
+- `projects/ds/src/lib/tabs/ds-statement-tabs.component.ts` uses the MDC `@angular/material/tabs`
+  entry point; the pre-MDC `legacy-tabs` entry point it used before v17 was removed by Angular
+  Material, so its rendered DOM/CSS changed for consumers.
 
 ## CI
 
