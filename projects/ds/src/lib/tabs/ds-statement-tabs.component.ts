@@ -8,9 +8,9 @@ export interface DsStatementPeriod {
 
 /** Statement period switcher. */
 @Component({
-  selector: 'bofa-statement-tabs',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
+    selector: 'bofa-statement-tabs',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    template: `
     <mat-tab-group
       class="bofa-statement-tabs"
       [selectedIndex]="selectedIndex"
@@ -26,14 +26,15 @@ export interface DsStatementPeriod {
       </mat-tab>
     </mat-tab-group>
   `,
-  styles: [
-    `
+    styles: [
+        `
       .bofa-statement-tabs__count {
         padding: 16px 8px;
         margin: 0;
       }
     `,
-  ],
+    ],
+    standalone: false
 })
 export class DsStatementTabsComponent {
   @Input() periods: DsStatementPeriod[] = [];

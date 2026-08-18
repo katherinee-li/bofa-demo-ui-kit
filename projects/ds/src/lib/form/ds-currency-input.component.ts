@@ -2,15 +2,15 @@ import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'bofa-currency-input',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DsCurrencyInputComponent),
-      multi: true,
-    },
-  ],
-  template: `
+    selector: 'bofa-currency-input',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => DsCurrencyInputComponent),
+            multi: true,
+        },
+    ],
+    template: `
     <mat-form-field appearance="outline" class="bofa-currency-input">
       <mat-label>{{ label }}</mat-label>
       <span matTextPrefix>$&nbsp;</span>
@@ -27,13 +27,14 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
       <mat-hint *ngIf="hint">{{ hint }}</mat-hint>
     </mat-form-field>
   `,
-  styles: [
-    `
+    styles: [
+        `
       .bofa-currency-input {
         width: 100%;
       }
     `,
-  ],
+    ],
+    standalone: false
 })
 export class DsCurrencyInputComponent implements ControlValueAccessor {
   @Input() label = 'Amount';

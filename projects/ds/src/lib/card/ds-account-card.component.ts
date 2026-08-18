@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'bofa-account-card',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
+    selector: 'bofa-account-card',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    template: `
     <mat-card class="bofa-account-card" appearance="outlined">
       <mat-card-header>
         <mat-card-title>{{ accountName }}</mat-card-title>
@@ -18,15 +18,16 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
       </mat-card-actions>
     </mat-card>
   `,
-  styles: [
-    `
+    styles: [
+        `
       .bofa-account-card__balance {
         font-size: 28px;
         font-weight: 600;
         margin: 8px 0 0;
       }
     `,
-  ],
+    ],
+    standalone: false
 })
 export class DsAccountCardComponent {
   @Input() accountName = '';

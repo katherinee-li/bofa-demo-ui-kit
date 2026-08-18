@@ -3,9 +3,9 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 export type DsAlertSeverity = 'info' | 'warning' | 'critical' | 'success';
 
 @Component({
-  selector: 'bofa-alert-banner',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
+    selector: 'bofa-alert-banner',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    template: `
     <div class="bofa-alert" [ngClass]="'bofa-alert--' + severity" role="status">
       <mat-icon class="bofa-alert__icon">{{ icon }}</mat-icon>
       <div class="bofa-alert__body">
@@ -23,8 +23,8 @@ export type DsAlertSeverity = 'info' | 'warning' | 'critical' | 'success';
       </button>
     </div>
   `,
-  styles: [
-    `
+    styles: [
+        `
       .bofa-alert {
         display: flex;
         align-items: flex-start;
@@ -53,7 +53,8 @@ export type DsAlertSeverity = 'info' | 'warning' | 'critical' | 'success';
         flex: 1;
       }
     `,
-  ],
+    ],
+    standalone: false
 })
 export class DsAlertBannerComponent {
   @Input() severity: DsAlertSeverity = 'info';

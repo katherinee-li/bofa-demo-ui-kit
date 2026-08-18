@@ -18,8 +18,8 @@ export interface DsTransaction {
 }
 
 @Component({
-  selector: 'bofa-transaction-table',
-  template: `
+    selector: 'bofa-transaction-table',
+    template: `
     <table mat-table [dataSource]="dataSource" matSort class="bofa-transaction-table">
       <ng-container matColumnDef="postedAt">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
@@ -48,8 +48,8 @@ export interface DsTransaction {
     </table>
     <mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
   `,
-  styles: [
-    `
+    styles: [
+        `
       .bofa-transaction-table {
         width: 100%;
       }
@@ -57,7 +57,8 @@ export interface DsTransaction {
         text-align: right;
       }
     `,
-  ],
+    ],
+    standalone: false
 })
 export class DsTransactionTableComponent implements OnChanges, AfterViewInit {
   @Input() transactions: DsTransaction[] = [];

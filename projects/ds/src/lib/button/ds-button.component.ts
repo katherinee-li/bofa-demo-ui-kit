@@ -3,9 +3,9 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 export type DsButtonVariant = 'primary' | 'secondary' | 'danger';
 
 @Component({
-  selector: 'bofa-button',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
+    selector: 'bofa-button',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    template: `
     <button
       mat-raised-button
       class="bofa-button"
@@ -19,8 +19,8 @@ export type DsButtonVariant = 'primary' | 'secondary' | 'danger';
       <span class="bofa-button__label"><ng-content></ng-content></span>
     </button>
   `,
-  styles: [
-    `
+    styles: [
+        `
       .bofa-button__spinner {
         display: inline-block;
         margin-right: 8px;
@@ -30,7 +30,8 @@ export type DsButtonVariant = 'primary' | 'secondary' | 'danger';
         --bofa-button-bg: #c8102e;
       }
     `,
-  ],
+    ],
+    standalone: false
 })
 export class DsButtonComponent {
   @Input() variant: DsButtonVariant = 'primary';
