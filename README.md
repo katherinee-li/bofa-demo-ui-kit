@@ -4,16 +4,16 @@ Angular component library layered over Angular Material, consumed by downstream 
 applications (see `katherinee-li/bofa-demo-app`).
 
 **Demo asset.** This repo stands in for a bank-internal shared component library during a migration
-demo: the situation it models is an Angular 14→18 upgrade where downstream teams must not break.
+demo: the situation it models is an Angular 14→18 upgrade where downstream teams must not break. Currently at Angular 18.2.x.
 
 ## Current state
 
 | Item | Value |
 |---|---|
-| Angular | 16.2.x |
-| Angular Material | 16.2.x |
-| Node | 18.x (Angular 16 supports `^16.14 \|\| ^18.10`) |
-| Library version | 3.2.0 |
+| Angular | 18.2.x |
+| Angular Material | 18.2.x |
+| Node | 18.x (Angular 18 supports `^18.13.1 \|\| ^20.9.0`) |
+| Library version | 5.0.0 |
 
 ## Commands
 
@@ -31,9 +31,10 @@ cd dist/ds && npm pack                                 # artifact consumers inst
 - `projects/ds/src/styles/_theme.scss` holds the custom design system layered over Material theming
   (`define-light-theme`, `define-typography-config`), which is where Material's theming API changes
   land during an upgrade.
-- `projects/ds/src/lib/tabs/ds-statement-tabs.component.ts` still uses the pre-MDC
-  `@angular/material/legacy-tabs` entry point, which Angular Material removes in v17 — a real, not
-  hypothetical, upgrade blocker.
+- `projects/ds/src/lib/tabs/ds-statement-tabs.component.ts` now uses the MDC-based
+  `@angular/material/tabs` entry point — the legacy tabs migration has been completed.
+- `projects/ds/src/styles/_theme.scss` now uses the Angular 18 Material theming API
+  with `m2-` prefixed functions (e.g., `mat.m2-define-light-theme`).
 
 ## CI
 

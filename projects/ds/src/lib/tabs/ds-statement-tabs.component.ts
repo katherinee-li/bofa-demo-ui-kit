@@ -7,8 +7,7 @@ export interface DsStatementPeriod {
 }
 
 /**
- * Statement period switcher. Still on the pre-MDC Material tabs implementation
- * inherited from the original build; the rest of the library has moved on.
+ * Statement period switcher. Migrated to MDC-based Material tabs implementation.
  */
 @Component({
   selector: 'bofa-statement-tabs',
@@ -31,11 +30,11 @@ export interface DsStatementPeriod {
   `,
   styles: [
     `
-      .bofa-statement-tabs__count {
-        padding: 16px 8px;
-        margin: 0;
-      }
-    `,
+          .bofa-statement-tabs__count {
+            padding: 16px 8px;
+            margin: 0;
+          }
+        `,
   ],
 })
 export class DsStatementTabsComponent {
