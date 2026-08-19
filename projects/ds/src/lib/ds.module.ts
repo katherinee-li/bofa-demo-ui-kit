@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatLegacyTabsModule } from '@angular/material/legacy-tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 
@@ -40,7 +40,7 @@ const COMPONENTS = [
     MatIconModule,
     MatInputModule,
     MatPaginatorModule,
-    MatLegacyTabsModule,
+    MatTabsModule,
     MatProgressSpinnerModule,
     MatSortModule,
     MatTableModule,

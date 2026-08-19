@@ -21,15 +21,15 @@ export type DsButtonVariant = 'primary' | 'secondary' | 'danger';
   `,
   styles: [
     `
-      .bofa-button__spinner {
-        display: inline-block;
-        margin-right: 8px;
-        vertical-align: middle;
-      }
-      .bofa-button--danger {
-        --bofa-button-bg: #c8102e;
-      }
-    `,
+          .bofa-button__spinner {
+            display: inline-block;
+            margin-right: 8px;
+            vertical-align: middle;
+          }
+          .bofa-button--danger {
+            --bofa-button-bg: #c8102e;
+          }
+        `,
   ],
 })
 export class DsButtonComponent {
