@@ -15,8 +15,23 @@ jobs:
   library:
     name: Build & test @bofa/ds
     runs-on: ubuntu-latest
+    outputs:
+      consumer_ref: ${{ steps.consumer.outputs.ref }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Resolve consumer ref
+        id: consumer
+        run: |
+          ref="${{ inputs.consumer_ref }}"
+          if [ -f .downstream-consumer-ref ]; then
+            ref=$(tr -d '[:space:]' < .downstream-consumer-ref)
+          fi
+          if [ -z "$ref" ]; then
+            ref="main"
+          fi
+          echo "ref=$ref" >> "$GITHUB_OUTPUT"
+          echo "Consumer ref for the downstream build: $ref"
 
       - uses: actions/setup-node@v4
         with:
@@ -41,19 +56,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Resolve consumer ref
-        id: consumer
-        run: |
-          ref="${{ inputs.consumer_ref }}"
-          if [ -z "$ref" ]; then
-            ref="main"
-          fi
-          echo "ref=$ref" >> "$GITHUB_OUTPUT"
-
       - uses: actions/checkout@v4
         with:
           repository: katherinee-li/bofa-demo-app
-          ref: ${{ steps.consumer.outputs.ref }}
+          ref: ${{ needs.library.outputs.consumer_ref }}
           path: consumer
 
       - uses: actions/setup-node@v4
