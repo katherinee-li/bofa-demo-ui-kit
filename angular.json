@@ -31,11 +31,11 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/ds/tsconfig.spec.json",
+            "karmaConfig": "projects/ds/karma.conf.js",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
-            ],
-            "karmaConfig": "karma.conf.js"
+            ]
           }
         }
       }
