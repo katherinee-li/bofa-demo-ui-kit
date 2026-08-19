@@ -3,7 +3,9 @@ name: CI
 on:
   push:
     branches: [main]
+
   pull_request:
+
   workflow_dispatch:
     inputs:
       consumer_ref:
@@ -24,9 +26,14 @@ jobs:
           node-version: 18
           cache: npm
 
-      - run: npm ci
-      - run: npx ng build ds
-      - run: npx ng test ds --watch=false --browsers=ChromeHeadlessCI
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build library
+        run: npx ng build ds
+
+      - name: Test library
+        run: npx ng test ds --watch=false --browsers=ChromeHeadlessCI
 
       - name: Pack library artifact
         run: cd dist/ds && npm pack --pack-destination "$GITHUB_WORKSPACE"
@@ -42,17 +49,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Resolve consumer ref
+      - name: Resolve consumer branch
         id: consumer
         run: |
           ref="${{ inputs.consumer_ref }}"
 
           if [ -z "$ref" ]; then
-            ref=main
+            ref="main"
           fi
 
           echo "ref=$ref" >> "$GITHUB_OUTPUT"
-          echo "Building consumer from ref: $ref"
+          echo "Testing downstream consumer branch: $ref"
 
       - name: Check out downstream consumer
         uses: actions/checkout@v4
@@ -70,11 +77,13 @@ jobs:
           name: bofa-ds-tarball
           path: tarball
 
-      - name: Install consumer against the freshly built library
+      - name: Install consumer dependencies
         working-directory: consumer
-        run: |
-          npm ci
-          npm install "$(ls "$GITHUB_WORKSPACE"/tarball/bofa-ds-*.tgz)"
+        run: npm ci
+
+      - name: Install freshly built library
+        working-directory: consumer
+        run: npm install "$(ls "$GITHUB_WORKSPACE"/tarball/bofa-ds-*.tgz)"
 
       - name: Build consumer
         working-directory: consumer
