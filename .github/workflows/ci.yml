@@ -4,22 +4,33 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
+    inputs:
+      consumer_ref:
+        description: "Consumer branch to test"
+        required: false
+        default: "main"
 
 jobs:
   library:
     name: Build & test @bofa/ds
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: npm
+
       - run: npm ci
       - run: npx ng build ds
       - run: npx ng test ds --watch=false --browsers=ChromeHeadlessCI
+
       - name: Pack library artifact
         run: cd dist/ds && npm pack --pack-destination "$GITHUB_WORKSPACE"
+
       - uses: actions/upload-artifact@v4
         with:
           name: bofa-ds-tarball
@@ -29,26 +40,46 @@ jobs:
     name: Downstream consumer build (banking-app)
     needs: library
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Resolve consumer ref
+        id: consumer
+        run: |
+          ref="${{ inputs.consumer_ref }}"
+
+          if [ -z "$ref" ]; then
+            ref=main
+          fi
+
+          echo "ref=$ref" >> "$GITHUB_OUTPUT"
+          echo "Building consumer from ref: $ref"
+
+      - name: Check out downstream consumer
+        uses: actions/checkout@v4
         with:
           repository: katherinee-li/bofa-demo-app
+          ref: ${{ steps.consumer.outputs.ref }}
           path: consumer
+
       - uses: actions/setup-node@v4
         with:
           node-version: 18
+
       - uses: actions/download-artifact@v4
         with:
           name: bofa-ds-tarball
           path: tarball
+
       - name: Install consumer against the freshly built library
         working-directory: consumer
         run: |
           npm ci
           npm install "$(ls "$GITHUB_WORKSPACE"/tarball/bofa-ds-*.tgz)"
+
       - name: Build consumer
         working-directory: consumer
         run: npx ng build
+
       - name: Test consumer
         working-directory: consumer
         run: npx ng test --watch=false --browsers=ChromeHeadlessCI
