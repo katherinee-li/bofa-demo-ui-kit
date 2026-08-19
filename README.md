@@ -1,42 +1,69 @@
-# @bofa/ds — shared retail design system
+# @bofa/ds — Retail Banking Design System
 
-Angular component library layered over Angular Material, consumed by downstream retail banking
-applications (see `katherinee-li/bofa-demo-app`).
+Angular component library providing reusable UI components for retail banking applications. Built on Angular Material with custom theming and branding.
 
-**Demo asset.** This repo stands in for a bank-internal shared component library during a migration
-demo: the situation it models is an Angular 14→18 upgrade where downstream teams must not break.
+## Installation
 
-## Current state
+```bash
+npm install @bofa/ds
+```
 
-| Item | Value |
-|---|---|
-| Angular | 16.2.x |
-| Angular Material | 16.2.x |
-| Node | 18.x (Angular 16 supports `^16.14 \|\| ^18.10`) |
-| Library version | 3.2.0 |
+## Usage
 
-## Commands
+```typescript
+import { DsModule } from '@bofa/ds';
+
+@NgModule({
+  imports: [
+    DsModule,
+    // ... other imports
+  ]
+})
+export class AppModule { }
+```
+
+## Components
+
+- **Account Cards**: Display account information with balances and actions
+- **Alert Banners**: Dismissible notifications for important messages
+- **Buttons**: Primary, secondary, and danger variants with loading states
+- **Currency Input**: Formatted currency input with validation
+- **Statement Tabs**: Period switcher for documents and statements
+- **Transaction Tables**: Sortable data tables with pagination
+
+## Theming
+
+The library includes a custom design system with the BofA brand colors and typography. Configure your application to use the theme:
+
+```scss
+@use '@bofa/ds/src/styles/theme' as ds;
+
+@include ds.bofa-design-system();
+```
+
+## Development
 
 ```bash
 npm ci
-npx ng build ds                                        # builds to dist/ds
-npx ng test ds --watch=false --browsers=ChromeHeadless # 9 specs
-cd dist/ds && npm pack                                 # artifact consumers install
+npx ng build ds
+npx ng test ds --watch=false --browsers=ChromeHeadless
 ```
 
-## Why the structure matters for the migration
+## Building
 
-- `projects/ds/src/public-api.ts` is the compatibility contract. Removing or changing an export breaks
-  every downstream consumer build.
-- `projects/ds/src/styles/_theme.scss` holds the custom design system layered over Material theming
-  (`define-light-theme`, `define-typography-config`), which is where Material's theming API changes
-  land during an upgrade.
-- `projects/ds/src/lib/tabs/ds-statement-tabs.component.ts` still uses the pre-MDC
-  `@angular/material/legacy-tabs` entry point, which Angular Material removes in v17 — a real, not
-  hypothetical, upgrade blocker.
+```bash
+npx ng build ds
+cd dist/ds && npm pack
+```
 
-## CI
+## API Contract
 
-`.github/workflows/ci.yml` runs the library build and unit tests, then a **downstream consumer build**
-job that clones the consumer app and builds it against the freshly packed library. Non-breakage is
-demonstrated by that job, not asserted in a PR description.
+The public API is defined in `projects/ds/src/public-api.ts`. Changes to exported components, selectors, or interfaces require a major version bump per our semantic versioning policy.
+
+## Versioning
+
+This project follows semantic versioning. Current version: 5.0.0
+
+## CI/CD
+
+The library includes automated testing and downstream compatibility checks to ensure changes don't break consumer applications.
