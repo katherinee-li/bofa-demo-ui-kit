@@ -1,12 +1,12 @@
 {
   "name": "@bofa/ds",
-  "version": "3.2.0",
+  "version": "1.0.0",
   "peerDependencies": {
-    "@angular/common": "^16.2.0",
-    "@angular/core": "^16.2.0",
-    "@angular/forms": "^16.2.0",
-    "@angular/cdk": "^16.2.0",
-    "@angular/material": "^16.2.0"
+    "@angular/common": "^14.2.0",
+    "@angular/core": "^14.2.0",
+    "@angular/forms": "^14.2.0",
+    "@angular/cdk": "^14.2.0",
+    "@angular/material": "^14.2.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
