@@ -2,6 +2,8 @@
 
 Angular component library providing reusable UI components for retail banking applications. Built on Angular Material with custom theming and branding.
 
+Requires Angular 15 and Angular Material 15 (MDC-based components) in the consuming application.
+
 ## Installation
 
 ```bash
@@ -62,7 +64,9 @@ The public API is defined in `projects/ds/src/public-api.ts`. Changes to exporte
 
 ## Versioning
 
-This project follows semantic versioning. Current version: 1.0.0
+This project follows semantic versioning. Current version: 2.0.0
+
+`2.0.0` upgrades the library to Angular 15. The exported TypeScript API is unchanged, but Angular Material 15 replaces the component internals with the MDC implementations, so consumers must be on Angular/Material 15 and any styles targeting internal `.mat-*` class names need to be re-pointed at their `.mat-mdc-*` equivalents.
 
 ## CI/CD
 
