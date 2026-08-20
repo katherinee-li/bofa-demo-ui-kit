@@ -62,7 +62,9 @@ The public API is defined in `projects/ds/src/public-api.ts`. Changes to exporte
 
 ## Versioning
 
-This project follows semantic versioning. Current version: 1.0.0
+This project follows semantic versioning. Current version: 2.0.0
+
+Requires Angular and Angular Material 15.2 or later. Version 1.x supports Angular 14.
 
 ## CI/CD
 
