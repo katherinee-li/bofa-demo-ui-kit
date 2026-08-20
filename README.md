@@ -62,7 +62,7 @@ The public API is defined in `projects/ds/src/public-api.ts`. Changes to exporte
 
 ## Versioning
 
-This project follows semantic versioning. Current version: 1.0.0
+This project follows semantic versioning. Current version: 5.0.0
 
 ## CI/CD
 
